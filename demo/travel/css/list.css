@@ -1,0 +1,30 @@
+#gallery {
+    color:#929092;
+}
+
+#gallery table {
+    width:100%;
+}
+
+#gallery table {
+    padding:50px 150px 0 150px;
+}
+
+#gallery td {
+    padding:40px;
+}
+
+#gallery .thumb {
+    margin:20px 0 20px 0;
+}
+
+
+#gallery .thumb img {
+    width:180px;
+    height:180px;
+}
+
+#gallery .author {
+    padding-bottom:10px;
+    border-bottom: 1px #C1C0C1 solid;
+}
