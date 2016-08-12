@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <title>My First Webpage</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <input id="newtext" type="text">
+    <button id="changeText">Change new text</button>
+    <p id="mytext">This is some text</p>
+
+    <script type="text/javascript">
+        document.getElementById("changeText").onclick = function() {
+            var newtext = document.getElementById("newtext").value;
+            document.getElementById("mytext").innerHTML = newtext;
+        };
+    </script>
+</body>
+</html>
