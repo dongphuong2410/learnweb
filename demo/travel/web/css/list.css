@@ -28,3 +28,10 @@
     padding-bottom:10px;
     border-bottom: 1px #C1C0C1 solid;
 }
+#gallery .author a {
+    text-decoration:none;
+    color:#929092;
+}
+#gallery .author a:visited {
+    color:#929092;
+}
