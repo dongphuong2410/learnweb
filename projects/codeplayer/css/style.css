@@ -1,79 +1,113 @@
 body,html {
     margin:0;
+    padding:0;
 }
 
 #header {
-    height:50px;
+    height:60px;
     width:100%;
     background-color:#EEEDEF;
-    padding:10px;
 }
 
 #wrapper {
     position:absolute;
     width:100%;
-    top:70px;
-    bottom:0;
+    top:60px;
+    bottom:0px;
 }
 
+.codetabs {
+    display:table;
+    width:100%;
+    height:100%;
+}
 
 #logo {
     float:left;
     width:30%;
     font-size:1.8em;
+    font-weight:bold;
+    margin:10px 0 0 10px;
 }
 
-#switch {
+#toggles {
     float:left;
+}
+
+#toggles ul {
+    list-style:none;
+    border:1px solid #cccccc;
+    border-radius:3px;
+    padding-left:1px;
+    background-color:grey;
+    height:27px;
+}
+
+#toggles li {
+    float:left;
+    padding:5px;
+    border-right:1px solid #cccccc;
 }
 
 #command {
     float:right;
-    margin-right:30px;
+    margin:15px 10px 0 0;
 }
 
 #command button {
-    width:70px;
-    height:35px;
+    width:60px;
+    font-size:1.1em;
+    height:30px;
 }
 
-input[type='checkbox'] {
-    margin:10px 15px;
+.selected {
+    background-color:black;
+    color:white;
 }
 
-p .clear {
+.clear {
     clear: both;
+    margin:0;
 }
 
 .code {
-    float:left;
+    display:table-cell;
     width:25%;
     height:100%;
+    border:1px solid #cccccc;
 }
 
 .tag {
+    text-align:right;
     width:100%;
-    text-align:center;
-    border: 1px solid #cccccc;
-    font-size:1.2em;
+    height:10%;
+    font-size:1em;
+    padding-top:10px;
+}
+
+.tag span {
+    padding:5px;
+    border:1px solid #cccccc;
+    border-radius:0.2em;
+    margin:15px;
 }
 
 .codearea {
-    height:100%;
+    height:90%;
 }
 .codearea textarea {
+    width:95%;
+    height:95%;
+    border:none;
+    resize:none;
+    font-family:monotype;
+}
+.codearea textarea:focus {
+    outline:0;
+}
+
+.codearea iframe {
     width:100%;
     height:100%;
-}
-
-#htmlDiv {
-}
-
-#cssDiv {
-}
-
-#javascriptDiv {
-}
-
-#resultDiv {
+    border:none;
 }

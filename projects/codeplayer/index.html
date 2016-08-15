@@ -8,21 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/codemirror/CodeMirror/master/lib/codemirror.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/codemirror/CodeMirror/master/mode/xml/xml.js"></script>
+     <script type="text/javascript" src="https://cdn.rawgit.com/codemirror/CodeMirror/master/mode/css/css.js"></script>
+     <script type="text/javascript" src="https://cdn.rawgit.com/codemirror/CodeMirror/master/mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/codemirror/CodeMirror/master/lib/codemirror.css">
+
 </head>
 <body>
     <div id="header">
         <div id="logo">
             CodePlayer
         </div>
-        <div id="switch">
-            <input type="checkbox" name="switchHTML">
-            <label for="switchHTML">HTML</label>
-            <input type="checkbox" name="switchCSS">
-            <label for="switchCSS">CSS</label>
-            <input type="checkbox" name="switchJavascript">
-            <label for="switchJavascript">Javascript</label>
-            <input type="checkbox" name="switchResult">
-            <label for="switchResult">Result</label>
+        <div id="toggles">
+            <ul>
+                <li class="toggle selected">HTML</li>
+                <li class="toggle selected">CSS</li>
+                <li class="toggle selected">Javascript</li>
+                <li class="toggle selected" style="border:none">Result</li>
+            </ul>
         </div>
         <div id="command">
             <button id="run">Run</button>
@@ -30,23 +34,50 @@
         <p class="clear">
     </div>
     <div id="wrapper">
-        <div id="htmlDiv" class="code">
-            <div class="tag">HTML</div>
-            <div class="codearea"><textarea></textarea></div>
-        </div>
-        <div id="cssDiv" class="code">
-            <div class="tag">CSS</div>
-            <div class="codearea"><textarea></textarea></div>
-        </div>
-        <div id="javascriptDiv" class="code">
-            <div class="tag">Javascript</div>
-            <div class="codearea"><textarea></textarea></div>
-        </div>
-        <div id="resultDiv" class="code">
-            <div class="tag">Result</div>
-        </div>
+        <div class="codetabs">
+            <div id="HTMLDiv" class="code">
+                <div class="tag"><span>HTML</span></div>
+                <div class="codearea"><textarea id="htmlCode"></textarea></div>
+            </div>
+            <div id="CSSDiv" class="code">
+                <div class="tag"><span>CSS</span></div>
+                <div class="codearea"><textarea id="cssCode"></textarea></div>
+            </div>
+            <div id="JavascriptDiv" class="code">
+                <div class="tag"><span>Javascript</span></div>
+                <div class="codearea"><textarea id="javascriptCode"></textarea></div>
+            </div>
+            <div id="ResultDiv" class="code">
+                <div class="tag"><span>Result</span></div>
+                <div class="codearea">
+                    <iframe id="result"></iframe>
+                </div>
+            </div>
+       </div>
     </div>
     <script>
+        var htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlCode"), { mode: "xml"});
+        var cssEditor = CodeMirror.fromTextArea(document.getElementById("cssCode"), { mode: "css"});
+        var jsEditor = CodeMirror.fromTextArea(document.getElementById("javascriptCode"), { mode: "javascript"});
+        $(".toggle").click(function() {
+            $(this).toggleClass('selected');
+            var activeDiv = $(this).html() + "Div";
+            $("#" + activeDiv).toggle();
+            var showDivs = $(".code").filter(function() {
+                return ($(this).css("display") != "none");
+            }).length;
+            if (showDivs > 0) {
+                var width = 100 / showDivs;
+                $(".code").css("width", width + "%"); 
+            }
+        });
+        $("#run").click(function() {
+            htmlEditor.save();
+            cssEditor.save();
+            jsEditor.save();
+            $("#result").contents().find("html").html("<style>" + $("#cssCode").val() + "</style>" + $("#htmlCode").val());
+            document.getElementById("result").contentWindow.eval($("#javascriptCode").val());
+        });
     </script>
 </body>
 </html>
